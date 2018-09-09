@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh "mvn clean install -DskipTests"
             }
         }
         stage('Test') {
@@ -15,6 +16,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+            }
+        }
+        stage('Clean') {
+            steps {
+                echo 'Cleaning..'
+                cleanWs()
+
             }
         }
     }
